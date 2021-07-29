@@ -17,6 +17,10 @@ RUN echo "/usr/sbin/apache2ctl start && tail -F /var/log/apache2/error.log" >> /
 RUN chmod a+x /root/run.sh
 
 ADD mellon.conf /etc/apache2/conf-available
+ADD signing-cert.crt /etc/apache2/mellon/
+ADD signing-cert.key /etc/apache2/mellon/
+ADD idp-metadata.xml /etc/apache2/mellon/
+
 RUN a2enconf mellon
 RUN /usr/sbin/apache2ctl start
 
